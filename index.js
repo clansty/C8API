@@ -15,8 +15,12 @@ app.get('/api/homework/:subject', function (req, res) {
 })
 
 app.post('/api/homework', jsonParser, function (req, res) {
-    var hw = getHomework();
-    var rq = req.body;
+    var hw = {};
+    try {
+        hw = getHomework();
+    }
+    catch{ }
+    rq = req.body;
 
     if (rq.c != null)
         hw.c = rq.c;
