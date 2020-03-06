@@ -3,7 +3,14 @@ var app = new express();
 var fs = require("fs");
 var bodyParser = require('body-parser');
 var jsonParser = bodyParser.json();
+const cors = require('cors');
 const cfg = "data.json";
+
+app.use(cors());
+
+app.get('/', function (req, res) {
+    res.send("欢迎来到高三八班 API");
+});
 
 app.get('/api/homework', function (req, res) {
     res.send(fs.readFileSync(cfg, 'utf-8'));
