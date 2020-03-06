@@ -36,8 +36,8 @@ app.post('/api/homework', jsonParser, function (req, res) {
         hw.p = rq.p;
     if (rq.b != null) //生物
         hw.b = rq.b;
-    if (rq.b != null) //班务
-        hw.b = rq.b;
+    if (rq.z != null) //班务
+        hw.z = rq.z;
 
     saveHomework(hw);
 
