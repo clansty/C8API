@@ -14,10 +14,24 @@ app.get('/api/homework/:subject', function (req, res) {
     res.end("233");
 })
 
-app.post('/api/save', jsonParser, function (req, res) {
-    console.timeLog("233", req);
-    console.log(req.body)
-    res.send({ "status": "ok" });
+app.post('/api/homework', jsonParser, function (req, res) {
+    var hw = getHomework();
+    var rq = res.body;
+
+    if (rq.c != null)
+        hw.c = rq.c;
+    if (rq.m != null)
+        hw.m = rq.m;
+    if (rq.e != null)
+        hw.e = rq.e;
+    if (rq.p != null)
+        hw.p = rq.p;
+    if (rq.b != null)
+        hw.b = rq.b;
+
+    saveHomework(hw);
+    
+    res.send({ "code": 200 });
 })
 
 var server = app.listen(8308, function () {
@@ -25,3 +39,11 @@ var server = app.listen(8308, function () {
     var port = server.address().port
     console.log("访问地址为 http://%s:%s", host, port)
 })
+
+function getHomework() {
+    var j = fs.readFileSync(cfg);
+    return JSON.parse(j);
+}
+function saveHomework(hw) {
+    fs.writeFile(cfg, hw, () => { });
+}
