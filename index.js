@@ -16,7 +16,7 @@ app.get('/api/homework/:subject', function (req, res) {
 
 app.post('/api/homework', jsonParser, function (req, res) {
     var hw = getHomework();
-    var rq = res.body;
+    var rq = req.body;
 
     if (rq.c != null)
         hw.c = rq.c;
@@ -30,7 +30,7 @@ app.post('/api/homework', jsonParser, function (req, res) {
         hw.b = rq.b;
 
     saveHomework(hw);
-    
+
     res.send({ "code": 200 });
 })
 
@@ -45,5 +45,5 @@ function getHomework() {
     return JSON.parse(j);
 }
 function saveHomework(hw) {
-    fs.writeFile(cfg, hw, () => { });
+    fs.writeFile(cfg, JSON.stringify(hw), () => { });
 }
