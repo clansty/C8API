@@ -22,15 +22,17 @@ app.post('/api/homework', jsonParser, function (req, res) {
     catch{ }
     rq = req.body;
 
-    if (rq.c != null)
+    if (rq.c != null) //语文
         hw.c = rq.c;
-    if (rq.m != null)
+    if (rq.m != null) //数学
         hw.m = rq.m;
-    if (rq.e != null)
+    if (rq.e != null) //英语
         hw.e = rq.e;
-    if (rq.p != null)
+    if (rq.p != null) //物理
         hw.p = rq.p;
-    if (rq.b != null)
+    if (rq.b != null) //生物
+        hw.b = rq.b;
+    if (rq.b != null) //班务
         hw.b = rq.b;
 
     saveHomework(hw);
