@@ -6,12 +6,16 @@ var jsonParser = bodyParser.json();
 const cfg = "data.json";
 
 app.get('/api/homework', function (req, res) {
-    res.end(fs.readFileSync(cfg, 'utf-8'));
+    res.send(fs.readFileSync(cfg, 'utf-8'));
 });
 
 app.get('/api/homework/:subject', function (req, res) {
-    console.log(req);
-    res.end("233");
+    var hw = getHomework();
+    if (hw[req.params.subject] == null) {
+        res.status(404).json({ code: 404 });
+        return;
+    }
+    res.send(hw[req.params.subject]);
 })
 
 app.post('/api/homework', jsonParser, function (req, res) {
