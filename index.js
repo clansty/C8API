@@ -4,7 +4,6 @@ var fs = require("fs");
 var bodyParser = require('body-parser');
 var jsonParser = bodyParser.json();
 const cors = require('cors');
-const cfg = "data.json";
 
 app.use(cors());
 
@@ -13,7 +12,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/api/homework', function (req, res) {
-    res.send(fs.readFileSync(cfg, 'utf-8'));
+    res.send(getHomework());
 });
 
 app.get('/api/homework/:subject', function (req, res) {
@@ -46,6 +45,9 @@ app.post('/api/homework', jsonParser, function (req, res) {
     if (rq.z != null) //班务
         hw.z = rq.z;
 
+    if (rq.size != null) //字体大小
+        hw.size = rq.size;
+
     saveHomework(hw);
 
     res.send({ "code": 200 });
@@ -58,9 +60,26 @@ var server = app.listen(8308, function () {
 })
 
 function getHomework() {
-    var j = fs.readFileSync(cfg);
-    return JSON.parse(j);
+    var d = new Date();
+    try {
+        var j = fs.readFileSync("data/" + d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate() + ".json");
+        return JSON.parse(j);
+    }
+    catch{
+        var o = {
+            c: "",
+            m: "",
+            e: "",
+            p: "",
+            b: "",
+            z: "",
+            size: 30
+        };
+        fs.writeFileSync("data/" + d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate() + ".json", JSON.stringify(o));
+        return getHomework();
+    }
 }
 function saveHomework(hw) {
-    fs.writeFile(cfg, JSON.stringify(hw), () => { });
+    var d = new Date();
+    fs.writeFile("data/" + d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate() + ".json", JSON.stringify(hw), () => { });
 }
