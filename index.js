@@ -4,7 +4,7 @@ var fs = require("fs");
 var bodyParser = require('body-parser');
 var jsonParser = bodyParser.json();
 const cors = require('cors');
-const Memobird = require('Memobird');
+//const Memobird = require('Memobird');
 
 app.use(cors());
 
