@@ -16,6 +16,15 @@ app.get('/api/homework', function (req, res) {
     res.send(getHomework());
 });
 
+app.get('/api/slogan', function (req, res) {
+    res.send(fs.readFileSync('data/slogan.json'));
+});
+
+app.post('/api/slogan', jsonParser, function (req, res) {
+    fs.writeFile('data/slogan.json', JSON.stringify(req.data), () => { });
+    res.send({ code: 200 });
+});
+
 app.get('/api/homework/:subject', function (req, res) {
     var hw = getHomework();
     if (hw[req.params.subject] == null) {
@@ -51,7 +60,7 @@ app.post('/api/homework', jsonParser, function (req, res) {
 
     saveHomework(hw);
 
-    res.send({ "code": 200 });
+    res.send({ code: 200 });
 })
 
 app.post('/api/memobird/printHtml', jsonParser, function (req, res) {
