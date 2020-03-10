@@ -4,7 +4,7 @@ var fs = require("fs");
 var bodyParser = require('body-parser');
 var jsonParser = bodyParser.json();
 const cors = require('cors');
-//const Memobird = require('Memobird');
+const Memobird = require('memobird');
 
 app.use(cors());
 
@@ -69,7 +69,7 @@ app.post('/api/memobird/printHtml', jsonParser, function (req, res) {
         memobirdID: 'b9d6fe6526d3e0ec',
         useridentifying: 'lw',
     });
-    memobird.printHtml(req.data.content)
+    memobird.printHtml(req.body.content)
         .then(printcontentid => memobird.watch(printcontentid, 3000, 15000))
         .then(printflag => res.send({ status: printflag == 1 }));
 
@@ -81,7 +81,7 @@ app.post('/api/memobird/printText', jsonParser, function (req, res) {
         memobirdID: 'b9d6fe6526d3e0ec',
         useridentifying: 'lw',
     });
-    memobird.printText(req.data.content)
+    memobird.printText(req.body.content)
         .then(printcontentid => memobird.watch(printcontentid, 3000, 15000))
         .then(printflag => res.send({ status: printflag == 1 }));
 })
