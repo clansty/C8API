@@ -21,7 +21,7 @@ app.get('/api/slogan', function (req, res) {
 });
 
 app.post('/api/slogan', jsonParser, function (req, res) {
-    fs.writeFile('data/slogan.json', JSON.stringify(req.data), () => { });
+    fs.writeFile('data/slogan.json', JSON.stringify(req.body), () => { });
     res.send({ code: 200 });
 });
 
