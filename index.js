@@ -86,7 +86,7 @@ app.post('/api/memobird/printText', jsonParser, function (req, res) {
         .then(printflag => res.send({ status: printflag == 1 }));
 })
 
-var server = app.listen(8308, function () {
+var server = app.listen(8308, '0.0.0.0', function () {
     var host = server.address().address
     var port = server.address().port
     console.log("访问地址为 http://%s:%s", host, port)
