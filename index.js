@@ -7,6 +7,7 @@ const cors = require('cors');
 const Memobird = require('memobird');
 
 app.use(cors());
+global.slogan = fs.readFileSync('data/slogan.json');
 
 app.get('/', function (req, res) {
     res.send("欢迎来到高三八班 API");
@@ -17,11 +18,12 @@ app.get('/api/homework', function (req, res) {
 });
 
 app.get('/api/slogan', function (req, res) {
-    res.send(fs.readFileSync('data/slogan.json'));
+    res.send(slogan);
 });
 
 app.post('/api/slogan', jsonParser, function (req, res) {
-    fs.writeFile('data/slogan.json', JSON.stringify(req.body), () => { });
+    slogan = JSON.stringify(req.body);
+    fs.writeFile('data/slogan.json', slogan, () => { });
     res.send({ code: 200 });
 });
 
