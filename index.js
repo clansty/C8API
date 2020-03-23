@@ -8,6 +8,13 @@ const Memobird = require('memobird');
 
 app.use(cors());
 global.slogan = fs.readFileSync('data/slogan.json');
+try {
+    var j = fs.readFileSync('data/hitokoto.json');
+    global.hitokoto = JSON.parse(j);
+}
+catch{
+    global.hitokoto = [];
+}
 
 app.get('/', function (req, res) {
     res.send("欢迎来到高三八班 API");
@@ -25,6 +32,23 @@ app.post('/api/slogan', jsonParser, function (req, res) {
     slogan = JSON.stringify(req.body);
     fs.writeFile('data/slogan.json', slogan, () => { });
     res.send({ code: 200 });
+});
+
+app.post('/api/hitokoto', jsonParser, function (req, res) {
+    var ht = {
+        text: req.body.text,
+        author: req.body.author,
+        contributor: req.body.contributor
+    }
+    hitokoto.push(ht);
+    fs.writeFile('data/hitokoto.json', JSON.stringify(hitokoto), () => { });
+    res.send({ code: 200 });
+});
+
+app.get('/api/hitokoto', function (req, res) {
+    var l = hitokoto.length;
+    var i = Math.floor(Math.random() * l);
+    res.send(hitokoto[i]);
 });
 
 app.get('/api/homework/:subject', function (req, res) {
