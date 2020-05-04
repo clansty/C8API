@@ -24,6 +24,67 @@ app.get('/api/homework', function (req, res) {
     res.send(getHomework());
 });
 
+app.get('/api/homeworks', function (req, res) {
+    var hw = getHomework();
+    rt = "";
+    if (hw.c) {
+        rt += "语文：";
+        var tmp = hw.c;
+        tmp = tmp.replace('\r', '');
+        tmp = tmp.split('\n');
+        tmp.forEach(i => {
+            rt += '\n  ' + i;
+        });
+    }
+    if (hw.m) {
+        rt += "\n数学：";
+        var tmp = hw.m;
+        tmp = tmp.replace('\r', '');
+        tmp = tmp.split('\n');
+        tmp.forEach(i => {
+            rt += '\n  ' + i;
+        });
+    }
+    if (hw.e) {
+        rt += "\n英语：";
+        var tmp = hw.e;
+        tmp = tmp.replace('\r', '');
+        tmp = tmp.split('\n');
+        tmp.forEach(i => {
+            rt += '\n  ' + i;
+        });
+    }
+    if (hw.p) {
+        rt += "\n物理：";
+        var tmp = hw.p;
+        tmp = tmp.replace('\r', '');
+        tmp = tmp.split('\n');
+        tmp.forEach(i => {
+            rt += '\n  ' + i;
+        });
+    }
+    if (hw.b) {
+        rt += "\n生物：";
+        var tmp = hw.b;
+        tmp = tmp.replace('\r', '');
+        tmp = tmp.split('\n');
+        tmp.forEach(i => {
+            rt += '\n  ' + i;
+        });
+    }
+    if (hw.z) {
+        rt += "\n班务：";
+        var tmp = hw.z;
+        tmp = tmp.replace('\r', '');
+        tmp = tmp.split('\n');
+        tmp.forEach(i => {
+            rt += '\n  ' + i;
+        });
+    }
+    rt = rt.trim('\n');
+    res.send(rt);
+});
+
 app.get('/api/slogan', function (req, res) {
     res.send(slogan);
 });
