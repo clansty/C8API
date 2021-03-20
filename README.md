@@ -95,6 +95,7 @@ Course4,Course5,Course6,...
 ```
 
 Tb(DutySchedule) is now added into function Schedule.
+
 Config file: data/tb.jconf
 
 ```json
@@ -105,6 +106,7 @@ Config file: data/tb.jconf
 ```
 
 Temporary File (Auto generated): data/curr.int
+
 Because the control panel of this function is not implemented yet, you can directly modify the temp file to take effect.
 
 ```
@@ -112,9 +114,12 @@ Because the control panel of this function is not implemented yet, you can direc
 ```
 
 The first argument is ( Group num - 1 ), the second is the current date.
+
 Any different time from that of the local computer will lead to the next group be shown after a refresh on C8UI.
 
 #### Extra functions
 DOCX Converter is an isolated function (for some reasons) implemented in C15, which is actually used for daily work with C8.
+
 It observes a special file (file path is defined at line 6 of C15.js) changes ,converts it into .txt format and 'sends' it to C8UI, which is the same as what C8API does.
+
 Repo at @JulianDroske/C15
