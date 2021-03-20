@@ -85,7 +85,7 @@ POST /api/homework
 Is a extended version of C8API, replacing the original version and more features are added.
 Compatible with both original version and C15Edit of C8UI.
 
-Now the schedule in C8UI is moved to data/schedule.jconf of C8API.
+Now the schedule in C8UI is moved to data/schedule.jconf in C8API.
 Line 1 is for Monday, 2 is for Tuesday, and so on.
 Spaces are not needed between two Courses.
 
@@ -96,7 +96,6 @@ Course4,Course5,Course6,...
 
 Tb(DutySchedule) is now added into function Schedule.
 Config file: data/tb.jconf
-Temporary File (Auto generated): data/curr.int
 
 ```json
 {
@@ -105,7 +104,8 @@ Temporary File (Auto generated): data/curr.int
 }
 ```
 
-Because the control panel of this function is not implemented yet, you can directly change the content of the temp file to take effect.
+Temporary File (Auto generated): data/curr.int
+Because the control panel of this function is not implemented yet, you can directly modify the temp file to take effect.
 
 ```
 0,2021-3-17
@@ -113,3 +113,8 @@ Because the control panel of this function is not implemented yet, you can direc
 
 The first argument is ( Group num - 1 ), the second is the current date.
 Any different time from that of the local computer will lead to the next group be shown after a refresh on C8UI.
+
+#### Extra functions
+DOCX Converter is an isolated function (for some reasons) implemented in C15, which is actually used for daily work with C8.
+It observes a special file (file path is defined at line 6 of C15.js) changes ,converts it into .txt format and 'sends' it to C8UI, which is the same as what C8API does.
+Repo at @JulianDroske/C15
