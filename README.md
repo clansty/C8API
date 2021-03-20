@@ -80,3 +80,36 @@ POST /api/homework
 }
 ```
 
+
+### C15 Edition of C8API
+Is a extended version of C8API, replacing the original version and more features are added.
+Compatible with both original version and C15Edit of C8UI.
+
+Now the schedule in C8UI is moved to data/schedule.jconf of C8API.
+Line 1 is for Monday, 2 is for Tuesday, and so on.
+Spaces are not needed between two Courses.
+
+```
+Course1,Course2,Course3,...
+Course4,Course5,Course6,...
+```
+
+Tb(DutySchedule) is now added into function Schedule.
+Config file: data/tb.jconf
+Temporary File (Auto generated): data/curr.int
+
+```json
+{
+	"Person1,Person2",
+	"Person3,Person4"
+}
+```
+
+Because the control panel of this function is not implemented yet, you can directly change the content of the temp file to take effect.
+
+```
+0,2021-3-17
+```
+
+The first argument is ( Group num - 1 ), the second is the current date.
+Any different time from that of the local computer will lead to the next group be shown after a refresh on C8UI.

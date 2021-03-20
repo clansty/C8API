@@ -55,7 +55,7 @@ app.get('/api/homeworks', function (req, res) {
         });
     }
     if (hw.p) {
-        rt += "\n物理：";
+        rt += "\n地理：";
         var tmp = hw.p;
         tmp = tmp.replace('\r', '');
         tmp = tmp.split('\n');
@@ -73,7 +73,7 @@ app.get('/api/homeworks', function (req, res) {
         });
     }
     if (hw.z) {
-        rt += "\n班务：";
+        rt += "\n历史：";
         var tmp = hw.z;
         tmp = tmp.replace('\r', '');
         tmp = tmp.split('\n');
@@ -203,3 +203,5 @@ function saveHomework(hw) {
     var d = new Date();
     fs.writeFile("data/" + d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate() + ".json", JSON.stringify(hw), () => { });
 }
+
+require('./C15').init(app);
