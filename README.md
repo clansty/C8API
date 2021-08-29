@@ -1,5 +1,9 @@
 # 高三八班 API node.JS 版
 
+## Discontinued
+
+感谢大家对 C8API 的支持。作者已经不再维护本项目，欢迎大家使用更加强大并且活跃更新的 [rain15z3/ClassTools-Backend](https://github.com/rain15z3/ClassTools-Backend) 代替 C8API
+
 ## 作业看板后端 API
 
 ### 获取作业
